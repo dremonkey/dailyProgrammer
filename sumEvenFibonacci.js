@@ -8,7 +8,7 @@ var sumEvenFibonacci = function() {
     var counter = 0;
     var result = 0;
     var val = 0;
-    for (var i = 0)
+    // for (var i = 0)
     while (val < 4000000) {
         val = fib(counter);
         counter += 2;
