@@ -1,5 +1,30 @@
-var foreignAlphabetSort = function() {
-    
+var foreignAlphabetSort = function(inputArray) {
+    var alphabetArr = inputArray[0].split(' ')[1].toUpperCase().split('');
+    var alphabet = {};
+    var words = inputArray.slice(1);
+
+    // create alphabet object
+    alphabetArr.forEach(function(character, index) {
+        if (!alphabet.hasOwnProperty(character)) {
+            alphabet[character] = index;        
+        }
+    });
+
+    // define recursive sorting function
+    var sortFunc = function(wordA, wordB) {
+        var orderA = alphabet[wordA[0].toUpperCase()];
+        var orderB = alphabet[wordB[0].toUpperCase()];
+        if (orderA !== orderB) { return orderA - orderB; }
+        if (orderA === orderB) {
+            if (wordA.length === 1 || wordB.length === 1) {
+                return wordA.length - wordB.length;
+            } else {
+                return sortFunc(wordA.slice(1), wordB.slice(1)); 
+            }
+        }
+    };
+
+    return words.sort(sortFunc);
 };
 
 /* 
