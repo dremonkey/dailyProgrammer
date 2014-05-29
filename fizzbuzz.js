@@ -17,3 +17,4 @@ var fizzbuzz = function() {
     }
     console.log(results);
 };
+
