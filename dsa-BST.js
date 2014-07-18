@@ -25,7 +25,6 @@ BinarySearchTree.prototype.add = function (value) {
 BinarySearchTree.prototype.breadthFirstSearch = function () {
     var visit = function (node) {
         console.log(node.value);
-        // can do anything you want
     };
     var queue = [];
     queue.shift(this);
@@ -38,13 +37,34 @@ BinarySearchTree.prototype.breadthFirstSearch = function () {
 };
 
 BinarySearchTree.prototype.preOrder = function () {
-
+    var visit = function (node) { };
+    visit(this);
+    if (this.left) { this.left.preOrder(); }
+    if (this.right) { this.right.preOrder(); }
 };
 
 BinarySearchTree.prototype.inOrder = function () {
-
+    var visit = function (node) { };
+    if (this.left) { this.left.inOrder(); }
+    visit(this);
+    if (this.right) { this.right.inOrder(); }
 };
 
 BinarySearchTree.prototype.postOrder = function () {
+    var visit = function (node) { };
+    if (this.left) { this.left.postOrder(); }
+    if (this.right) { this.right.postOrder(); }
+    visit(this);
+};
+
+BinarySearchTree.prototype.stackPreOrder = function () {
+
+};
+
+BinarySearchTree.prototype.stackInOrder = function () {
+
+};
+
+BinarySearchTree.prototype.stackPostOrder = function () {
 
 };
