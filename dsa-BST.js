@@ -1,0 +1,50 @@
+var BinarySearchTree = function (value) {
+    this.value = value;
+    this.left = null;
+    this.right = null;
+};
+
+BinarySearchTree.prototype.add = function (value) {
+    if (value === this.value) { 
+        return null;
+    } else if (value < this.value) {
+        if (this.left === null) { 
+            this.left = new BinarySearchTree(value); 
+        } else {
+            this.left.add(value);
+        }
+    } else {
+        if (this.right === null) {
+            this.right = new BinarySearchTree(value);
+        } else {
+            this.right.add(value);
+        }
+    }
+};
+
+BinarySearchTree.prototype.breadthFirstSearch = function () {
+    var visit = function (node) {
+        console.log(node.value);
+        // can do anything you want
+    };
+    var queue = [];
+    queue.shift(this);
+    while (queue.length > 0) {
+        var node = queue.pop(this);
+        visit(node);
+        if (this.left) { queue.shift(this.left); }
+        if (this.right) { queue.shift(this.right); }
+    }
+};
+
+BinarySearchTree.prototype.preOrder = function () {
+
+};
+
+BinarySearchTree.prototype.inOrder = function () {
+
+};
+
+BinarySearchTree.prototype.postOrder = function () {
+
+};
