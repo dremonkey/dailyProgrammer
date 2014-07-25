@@ -31,13 +31,5 @@ I used "x" but feel free to use any ASCII value you want. Heck if you want to di
 */
 
 var generateBitMap = function (hexArr) {
-    var prependZeroes = function (str) {
-        return str.length < 8 ? prependZeroes('0' + str) : str;
-    };
-    
-    return hexArr.map(function(hex) {
-        return prependZeroes(hex.toString(2)).split('').map(function (bit) { 
-            return bit === '1' ? 'x' : ' ';
-        }).join('');
-    }).join('\n');
+
 };

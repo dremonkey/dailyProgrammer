@@ -23,21 +23,6 @@ obj.random(); //returns undefined
 */
 
 Object.prototype.random = function() {
-    var values = [];
-    var recurser = function(obj) {
-        for (var k in obj) {
-            if (!obj.hasOwnProperty(k)) { continue; }
-            if (typeof obj[k] === 'function') { continue; }
 
-            if (typeof obj[k] === 'object') {
-                recurser(obj[k]);
-            } else {
-                values.push(obj[k]);
-            }
-        }
-    };
-
-    recurser(this);
-    return values[Math.floor(Math.random()*values.length)];
 };
 
