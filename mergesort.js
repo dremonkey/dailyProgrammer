@@ -31,22 +31,4 @@
  *   Done! Return the sorted array:
  *   [1,2,3,4,4,7,9]
  *
- * Complexity:
- *   What is the complexity of your algorithm in time and space?
- *   The merge step can be implemented using what is conceptually an insertion sort, and yet its time
- *   complexity is (spoiler alert!) much lower. Why is that?
- *
- *
- * Extra credit:
- *   One of the benefits of mergesort over e.g. quicksort is that it is "stable"; assuming the merge
- *   step is properly implemented, list items with the same value will remain in the same order they were
- *   in in the input. (This is academic in the case of sorting integers, but it is an important consideration
- *   when sorting more complex objects.) Is your implementation a stable sort?
- *
- * Extra credit:
- *   The naive mergesort assumes that the input array is completely unsorted, but in practice even random
- *   data will have "runs" of sorted integers. The "natural mergesort" takes advantage of this by splitting
- *   the input not into sublists of length 1, but into whatever sublists are already sorted in the input.
- *   Implement natural splitting into your mergesort. How much does it improve your average-case runtime?
- *
  */
