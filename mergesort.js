@@ -31,22 +31,58 @@
  *   Done! Return the sorted array:
  *   [1,2,3,4,4,7,9]
  *
- * Complexity:
- *   What is the complexity of your algorithm in time and space?
- *   The merge step can be implemented using what is conceptually an insertion sort, and yet its time
- *   complexity is (spoiler alert!) much lower. Why is that?
- *
- *
- * Extra credit:
- *   One of the benefits of mergesort over e.g. quicksort is that it is "stable"; assuming the merge
- *   step is properly implemented, list items with the same value will remain in the same order they were
- *   in in the input. (This is academic in the case of sorting integers, but it is an important consideration
- *   when sorting more complex objects.) Is your implementation a stable sort?
- *
- * Extra credit:
- *   The naive mergesort assumes that the input array is completely unsorted, but in practice even random
- *   data will have "runs" of sorted integers. The "natural mergesort" takes advantage of this by splitting
- *   the input not into sublists of length 1, but into whatever sublists are already sorted in the input.
- *   Implement natural splitting into your mergesort. How much does it improve your average-case runtime?
- *
  */
+
+// @NOTE Avoid splice, slice, shift, and unshift if worried about performance
+
+var mergeSort = function(array, start, end) {
+  start = start || 0;
+  end = end || array.length;
+
+  var len = end - start;
+  var mid = start + ~~(len/2);
+
+  // Base case
+  if (len <= 1) return [array[start]];
+
+  var left = mergeSort(array, start, mid);
+  var right = mergeSort(array, mid, start+len);
+
+  return merge(left, right);
+};
+
+// Responsible for merging two sorted arrays so that the resulting array is still sorted
+var merge = function (left, right) {
+  var merged = [];
+  var i = 0;
+  var j = 0;
+
+  while (i < left.length && j < right.length) {
+    if(left[i] < right[j]) {
+      merged.push(left[i]);
+      i++;
+    } else {
+      merged.push(right[j]);
+      j++;
+    }
+  }
+  
+  // Any remaining elements are added to the end
+  merged = merged.concat(left.slice(i)).concat(right.slice(j));
+
+  return merged;
+};
+
+var input = [];
+var sorted;
+var n = 10;
+
+for (var i = 0; i < n; i++) {
+  var number = ~~(Math.random() * n);
+  input.push(number);
+}
+
+// sorted = input.sort(function (a,b) {return a - b;}); // sort numerically, not lexicographically
+
+sorted = mergeSort(input);
+console.log(sorted);
