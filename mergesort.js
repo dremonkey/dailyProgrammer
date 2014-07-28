@@ -14,7 +14,7 @@
  *
  * This can be implemented using either a recursive ("top-down") or an iterative ("bottom-up") approach.
  *
- * Illustration of an iterative approach:
+ * Illustration:
  *
  *   Initial step: Input array is split into "sorted" sublists
  *   [4,7,4,3,9,1,2] -> [[4],[7],[4],[3],[9],[1],[2]]
@@ -35,19 +35,27 @@
 
 // @NOTE Avoid splice, slice, shift, and unshift if worried about performance
 
+/*
+ * @param {array} array - the array to be sorted
+ * @param {int} start - the index (inclusive) from which this subarray starts 
+ * @param {int} len - the index (exclusive) at which this subarray ends
+ */
 var mergeSort = function(array, start, end) {
   start = start || 0;
   end = end || array.length;
 
+  // calculate the length of the array and derive the mid point
   var len = end - start;
   var mid = start + ~~(len/2);
 
-  // Base case
+  // Base case, i.e. sorted array of length 1
   if (len <= 1) return [array[start]];
 
+  // Instead of using slice, we are keeping track of the start, mid, and end indices 
   var left = mergeSort(array, start, mid);
   var right = mergeSort(array, mid, start+len);
 
+  // merge the left and right
   return merge(left, right);
 };
 
